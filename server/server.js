@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import mysql from 'mysql2/promise';
-import { USER, PASSWORD } from './Const.js';
+import { USER, PASSWORD, HOST } from './Const.js';
 import db from './config.js';
 import Article from './models/Article.js';
 import Reference from './models/Reference.js';
@@ -24,6 +24,7 @@ app.use('/', router);
 var conn;
 mysql
   .createConnection({
+    host: HOST,
     user: USER,
     password: PASSWORD,
   })
