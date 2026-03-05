@@ -2,7 +2,7 @@
 FROM node:18-alpine AS frontend-build
 WORKDIR /app
 COPY gui/package*.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
 COPY gui/ .
 RUN npm run build
 
