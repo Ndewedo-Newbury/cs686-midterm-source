@@ -1,4 +1,4 @@
-const link = 'http://localhost:8080';
+const link = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 const routeGetArticles = link + '/getArticles';
 const routeGetArticleByID = link + '/getArticleByID';
