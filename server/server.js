@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import mysql from 'mysql2/promise';
-import { USER, PASSWORD, HOST } from './Const.js';
+import { USER, PASSWORD, HOST, DATABASE } from './Const.js';
 import db from './config.js';
 import Article from './models/Article.js';
 import Reference from './models/Reference.js';
@@ -30,7 +30,7 @@ mysql
   })
   .then((connection) => {
     conn = connection;
-    return connection.query('CREATE DATABASE IF NOT EXISTS storage');
+    return connection.query(`CREATE DATABASE IF NOT EXISTS \`${DATABASE}\``);
   })
   .then(() => {
     return conn.end();
