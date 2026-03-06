@@ -2,14 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import mysql from 'mysql2/promise';
-import { USER, PASSWORD, HOST, DATABASE } from './Const.js';
 import db from './config.js';
 import Article from './models/Article.js';
 import Reference from './models/Reference.js';
 import LikeOperator from './Operators.js';
 
-import fs from 'fs';
 ('use strict');
 
 const app = express();
@@ -19,25 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/', router);
-
-// Create DB connection
-var conn;
-mysql
-  .createConnection({
-    host: HOST,
-    user: USER,
-    password: PASSWORD,
-  })
-  .then((connection) => {
-    conn = connection;
-    return connection.query(`CREATE DATABASE IF NOT EXISTS \`${DATABASE}\``);
-  })
-  .then(() => {
-    return conn.end();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 // One to many relationship
 Article.hasMany(Reference, { as: 'Referinte', foreignKey: 'ArticleID' });
