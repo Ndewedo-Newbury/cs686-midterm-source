@@ -39,7 +39,7 @@ export default function ArticleTable() {
 
   useEffect(async () => {
     var data = await get(routeGetArticles);
-    setRows(data);
+    setRows(data ?? []);
   }, [willUpdate]);
   useEffect(async () => {
     sessionStorage.clear();
@@ -54,7 +54,7 @@ export default function ArticleTable() {
       filter.ArticleTitlu,
       filter.ArticleRezumat
     );
-    setRows(data);
+    setRows(data ?? []);
   };
   const navigateToFormUpdateArticle = (id) => {
     sessionStorage.setItem('putScreen', true);
@@ -76,12 +76,12 @@ export default function ArticleTable() {
 
   const sortByTitle = async () => {
     let data = await get(routeGetArticlesSortedByTitle);
-    setRows(data);
+    setRows(data ?? []);
   };
 
   const sortByDate = async () => {
     let data = await get(routeGetArticlesSortedByDate);
-    setRows(data);
+    setRows(data ?? []);
   };
 
   const navigateToFormReference = (idArticle) => {
