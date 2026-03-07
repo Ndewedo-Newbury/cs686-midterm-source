@@ -11,6 +11,7 @@ RUN npm run build
 # ---- Stage 2: Serve frontend with nginx ----
 FROM nginx:alpine AS frontend
 COPY --from=frontend-build /app/build /usr/share/nginx/html
+COPY gui/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
 # ---- Stage 3: Backend ----

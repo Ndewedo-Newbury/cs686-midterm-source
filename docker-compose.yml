@@ -3,11 +3,8 @@ services:
     build:
       context: .
       target: backend
-    ports:
-      - "8080:8080"
     environment:
       DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
@@ -20,6 +17,6 @@ services:
       args:
         - REACT_APP_API_URL=${REACT_APP_API_URL}
     ports:
-      - "3000:80"
+      - "80:80"
     depends_on:
       - backend
