@@ -51,7 +51,7 @@ check_status "GET /api/getReferences" 200 "$STATUS"
 # 4. POST /api/addArticle creates an article
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$API/addArticle" \
   -H "Content-Type: application/json" \
-  -d '{"ArticleTitlu":"Smoke Test Article","ArticleRezumat":"Created by smoke test","ArticleData":"2026-01-01"}')
+  -d '{"ArticleTitlu":"Smoke Test Article","ArticleRezumat":"Created by smoke test","ArticleData":"2022-01-01"}')
 STATUS=$(echo "$RESPONSE" | tail -1)
 BODY=$(echo "$RESPONSE" | head -1)
 check_status "POST /api/addArticle" 201 "$STATUS"
